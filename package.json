@@ -1,5 +1,5 @@
 {
-  "name": "hi.shaoruu.io",
+  "name": "vv-game",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -14,9 +14,9 @@
     "kill-bots": "yarn run-script scripts/removeAllBots.ts",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "docker:build": "docker build -t shaoruu.io .",
-    "docker:run": "docker run -p 4000:4000 -d shaoruu.io",
-    "docker:stop": "docker stop $(docker ps -a -q --filter ancestor=shaoruu.io --format=\"{{.ID}}\")",
+    "docker:build": "docker build -t vv-game .",
+    "docker:run": "docker run -p 4000:4000 -d vv-game",
+    "docker:stop": "docker stop $(docker ps -a -q --filter ancestor=vv-game --format=\"{{.ID}}\")",
     "run-script": "yarn ts-node --project tsconfig.server.json -r tsconfig-paths/register",
     "preview": "vite preview"
   },

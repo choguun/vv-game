@@ -98,12 +98,12 @@ async fn main() -> std::io::Result<()> {
     server
         .add_world(worlds::setup_main_world(&registry))
         .expect("Failed to add the main world");
-    server
-        .add_world(worlds::setup_flat_world(&registry))
-        .expect("Failed to add the flat world");
-    server
-        .add_world(worlds::setup_flat2_world(&registry))
-        .expect("Failed to add the flat2 world");
+    // server
+    //     .add_world(worlds::setup_flat_world(&registry))
+    //     .expect("Failed to add the flat world");
+    // server
+    //     .add_world(worlds::setup_flat2_world(&registry))
+    //     .expect("Failed to add the flat2 world");
     server
         .add_world(worlds::setup_terrain_world(&registry))
         .expect("Failed to add the terrain world");
@@ -132,6 +132,8 @@ async fn main() -> std::io::Result<()> {
             .allowed_origin("http://localhost:3001")
             .allowed_origin("http://localhost:4000")
             .allowed_origin("https://hi.shaoruu.io")
+            .allowed_origin("http://http://54.254.240.216:3000")
+            .allowed_origin("http://http://54.254.240.216:3001")
             .allowed_origin("https://shaoruu.io");
 
         let app = App::new()

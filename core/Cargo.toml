@@ -14,13 +14,13 @@ actix-web-actors = "4.3.0"
 pathfinding = "4.9.1"
 hashbrown = { version = "0.14.3", features = ["serde"] }
 kdtree = "0.7.0"
-log = "0.4.20"
+log = "0.4.21"
 nanoid = "0.4.0"
-rayon = "1.8.1"
-serde = { version = "1.0.196", features = ["derive"] }
-serde_json = "1.0.113"
+rayon = "1.10.0"
+serde = { version = "1.0.198", features = ["derive"] }
+serde_json = "1.0.116"
 specs = { version = "0.20.0", features = ["specs-derive", "serde"] }
-voxelize = "0.8.78"
+voxelize = "0.8.79"
 
 [profile.release]
 opt-level = 3

@@ -59,6 +59,7 @@ pub fn setup_methods(world: &mut World) {
                     .read_storage::<EntityFlag>()
                     .get(*entity)
                     .is_some()
+                    && world.ecs().read_storage::<BotFlag>().get(*entity).is_some()
             })
             .collect::<Vec<_>>();
 

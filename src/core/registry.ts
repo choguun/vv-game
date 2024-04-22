@@ -314,6 +314,7 @@ export async function makeRegistry(world: World, updateHooks: (() => void)[]) {
 
     const ctx = canvas.getContext('2d');
     if (!ctx) {
+
       throw new Error('Failed to get canvas context');
     }
 
@@ -525,8 +526,8 @@ export async function makeRegistry(world: World, updateHooks: (() => void)[]) {
   ) {
     const portalEffectCanvas = document.createElement('canvas');
     portalEffectCanvas.style.imageRendering = 'pixelated'; // Ensures no blur on the canvas
-    portalEffectCanvas.width = 32;
-    portalEffectCanvas.height = 32;
+    portalEffectCanvas.width = 16;
+    portalEffectCanvas.height = 16;
 
     const portalTexture = new CanvasTexture(portalEffectCanvas);
     portalTexture.minFilter = NearestFilter;
@@ -536,8 +537,14 @@ export async function makeRegistry(world: World, updateHooks: (() => void)[]) {
     const ctx = portalEffectCanvas.getContext('2d');
     if (ctx) {
       let offset = 0;
+      let frameCount = 0;
 
       const draw = () => {
+        frameCount++;
+        if (frameCount % 10 !== 0) {
+          return;
+        }
+        
         ctx.clearRect(
           0,
           0,

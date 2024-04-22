@@ -63,11 +63,6 @@ import WhiteConcrete from '../assets/images/blocks/white_concrete.png';
 import YellowCapet from '../assets/images/blocks/yellow_carpet.png';
 import YellowConcrete from '../assets/images/blocks/yellow_concrete.png';
 import Youtube from '../assets/images/blocks/youtube.png';
-import GraphQL from '../assets/images/ui/graphql.png';
-import MCJSLegacy from '../assets/images/ui/mc.js-legacy.png';
-import MCJS from '../assets/images/ui/mcjs.png';
-import MineJS from '../assets/images/ui/minejs.png';
-import RSTS from '../assets/images/ui/rust-ts.png';
 import Water from '../assets/voxelverses/own/water.png';
 import Dirt from '../assets/voxelverses/pixel-perfection/dirt.png';
 import Grass from '../assets/voxelverses/pixel-perfection/grass.png';
@@ -393,19 +388,6 @@ export async function makeRegistry(world: World, updateHooks: (() => void)[]) {
   currentTimeTexture.colorSpace = SRGBColorSpace;
 
   await world.applyBlockTexture('Current Time', 'pz', currentTimeTexture);
-  await world.applyBlockTexture('Trophy (mc.js)', 'cuppz', MCJS);
-  await world.applyBlockTexture('Trophy (mine.js)', 'cuppz', MineJS);
-  await world.applyBlockTexture(
-    'Trophy (modern-graphql-tutorial)',
-    'cuppz',
-    GraphQL,
-  );
-  await world.applyBlockTexture('Trophy (mc.js-legacy)', 'cuppz', MCJSLegacy);
-  await world.applyBlockTexture(
-    'Trophy (rust-typescript-template)',
-    'cuppz',
-    RSTS,
-  );
 
   await world.applyBlockTexture('Youtube', 'displaypz', Youtube);
   await world.applyBlockTexture('LinkedIn', 'displaypz', LinkedIn);

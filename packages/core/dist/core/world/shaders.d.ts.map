@@ -1,0 +1,1 @@
+{"version":3,"file":"shaders.d.ts","sourceRoot":"","sources":["../../../src/core/world/shaders.ts"],"names":[],"mappings":"AAEA;;GAEG;AACH,eAAO,MAAM,qBAAqB;;;CA6FjC,CAAC;AAEF,eAAO,MAAM,aAAa;IACxB;;;;;;;;;;;OAWG;mBAEQ,QAAQ;QACf,KAAK,EAAE,MAAM,CAAC;QACd,SAAS,EAAE,MAAM,CAAC;QAClB,KAAK,EAAE,MAAM,CAAC;QACd,MAAM,EAAE,OAAO,CAAC;QAChB,MAAM,EAAE,MAAM,CAAC;KAChB,CAAC;;;;CA8GL,CAAC"}

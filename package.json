@@ -6,6 +6,8 @@
   ],
   "version": "0.1.0",
   "scripts": {
+    "start:web": "pm2 start 'npm run dev:client' --name client",
+    "start:system": "pm2 start 'npm run dev:core' --name core",
     "build:ts": "lerna run --parallel dev",
     "setup": "cd packages/core && yarn link && cd ../aabb && yarn link && cd ../physics-engine && yarn link && cd ../raycast && yarn link && cd ../transport && yarn link && cd .. && yarn link @voxelverses/core && yarn link @voxelize/aabb && yarn link @voxelize/physics-engine && yarn link @voxelize/raycast && yarn link @voxelize/transport",
     "dev": "npm-run-all -p dev:*",

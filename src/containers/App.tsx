@@ -1,7 +1,7 @@
 import { Agility } from '../components/Agility';
 import { AIVoxelizer } from '../components/AIVoxelizer';
 import { Crosshair } from '../components/Crosshair';
-import { EditingAndHitting } from '../components/EditingAndHitting';
+import { EditingAndHitting } from '../components/EditAndHit';
 import { Inventory } from '../components/Inventory';
 import { IV } from '../components/IV';
 import { TabList } from '../components/TabList';

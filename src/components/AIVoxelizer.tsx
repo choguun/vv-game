@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import ReactLoading from 'react-loading';
 import { Vector3 } from 'three';
 
-import { ImageVoxelizer } from '../core/image-voxelizer';
-import { useVoxelize } from '../hooks/useVoxelize';
+import { ImageVoxelizer } from '../core/image-voxelverses';
+import { useVoxelize } from '../hooks/useVoxelverses';
 import { isAdmin } from '../utils/isAdmin';
 import { getServerUrl } from '../utils/urls';
 

@@ -1,5 +1,5 @@
 import { AABB } from '@voxelize/aabb';
-import { BlockUtils, type World } from '@voxelize/core';
+import { BlockUtils, type World } from '@voxelverses/core';
 import type { Engine } from '@voxelize/physics-engine';
 import { RigidBody } from '@voxelize/physics-engine';
 import System, {

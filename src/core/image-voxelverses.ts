@@ -1,4 +1,4 @@
-import type { AtlasTexture, BlockUpdate, World } from '@voxelize/core';
+import type { AtlasTexture, BlockUpdate, World } from '@voxelverses/core';
 import type { Vector3 } from 'three';
 
 /**

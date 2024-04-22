@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { ItemSlots } from '@voxelize/core';
+import { ItemSlots } from '@voxelverses/core';
 import classNames from 'classnames';
 import { createPortal } from 'react-dom';
 
 import { usePersistentState } from '../hooks/usePersistentState';
-import { useVoxelize } from '../hooks/useVoxelize';
+import { useVoxelize } from '../hooks/useVoxelverses';
 import { isAdmin } from '../utils/isAdmin';
 
 export function Inventory() {
@@ -14,7 +14,7 @@ export function Inventory() {
   const { itemSlots, world, inputs, voxelInteract, rigidControls } =
     useVoxelize();
   const [itemSlotIds, setItemSlotIds] = usePersistentState(
-    'shaoruu-voxelize-inventory',
+    'voxelverses-inventory',
     [1, 2, 50, 51, 52, 53, 54, 55, 56, 57],
   );
 

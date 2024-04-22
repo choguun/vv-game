@@ -34,7 +34,7 @@ import {
   type RigidControlsOptions,
   type TargetType,
   type WorldOptions,
-} from '@voxelize/core';
+} from '@voxelverses/core';
 import { GUI } from 'dat.gui';
 import {
   EffectComposer,
@@ -62,7 +62,7 @@ import {
   VoxelizeContext,
   type VoxelizeConfig,
   type VoxelizeContextData,
-} from '@/src/contexts/voxelize';
+} from '@/src/contexts/voxelverses';
 import { BlockEntities } from '@/src/core/block-entities';
 import { Trigger, Triggers } from '@/src/core/trigger';
 import type { ChatItem } from '@/src/types';

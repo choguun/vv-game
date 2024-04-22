@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-import { SpriteText, type Coords3 } from '@voxelize/core';
+import { SpriteText, type Coords3 } from '@voxelverses/core';
 import axios from 'axios';
 import { Group } from 'three';
 
-import { useVoxelize } from '../hooks/useVoxelize';
+import { useVoxelize } from '../hooks/useVoxelverses';
 import { getServerUrl } from '../utils/urls';
 
 const location = [4, 36, 4] as Coords3;

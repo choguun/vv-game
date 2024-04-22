@@ -7,7 +7,7 @@ import FootSteps1SFX from '../../assets/sounds/game/footsteps1.ogg';
 import FootSteps2SFX from '../../assets/sounds/game/footsteps2.ogg';
 import FootSteps3SFX from '../../assets/sounds/game/footsteps3.ogg';
 import FootSteps4SFX from '../../assets/sounds/game/footsteps4.ogg';
-import { useVoxelize } from '../../hooks/useVoxelize';
+import { useVoxelize } from '../../hooks/useVoxelverses';
 
 import { AudioContext } from '@/src/contexts/audio';
 

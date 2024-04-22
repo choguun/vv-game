@@ -1,8 +1,8 @@
 export const getQueryUsername = () => {
   const username = new URLSearchParams(window.location.search).get('username');
   if (username) {
-    localStorage.setItem('voxelize-lastQueriedUsername', username);
+    localStorage.setItem('voxelverses-lastQueriedUsername', username);
     return username;
   }
-  return localStorage.getItem('voxelize-lastQueriedUsername');
+  return localStorage.getItem('voxelverses-lastQueriedUsername');
 };

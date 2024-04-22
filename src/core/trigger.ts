@@ -1,5 +1,5 @@
 import type { AABB } from '@voxelize/aabb';
-import { NameTag, type RigidControls } from '@voxelize/core';
+import { NameTag, type RigidControls } from '@voxelverses/core';
 import { BoxGeometry, Group, Mesh, MeshBasicMaterial } from 'three';
 
 export type TriggerCallback = (rigidControls: RigidControls) => void;

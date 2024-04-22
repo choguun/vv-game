@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 
-import type { BlockUpdate, Coords3 } from '@voxelize/core';
+import type { BlockUpdate, Coords3 } from '@voxelverses/core';
 import axios from 'axios';
 
 import topStarredRepos from '../assets/data/topStars.json';
 import { ColorText } from '../components/ColorText';
-import { useVoxelize } from '../hooks/useVoxelize';
+import { useVoxelize } from '../hooks/useVoxelverses';
 import type { ChatItem } from '../types';
 import { getQueryUsername } from '../utils/getQueryUsername';
 import { isAdmin } from '../utils/isAdmin';
@@ -36,7 +36,7 @@ export function Chat() {
 
   const announcements = [
     {
-      text: 'Welcome to the Voxelize server!',
+      text: 'Welcome to the Voxelverses server!',
     },
   ];
 

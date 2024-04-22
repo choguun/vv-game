@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useVoxelize } from '../hooks/useVoxelize';
+import { useVoxelize } from '../hooks/useVoxelverses';
 
 type Props = {
   url: string;

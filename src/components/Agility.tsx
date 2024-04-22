@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import WallJumpSFX from '../assets/sounds/game/walljump.ogg';
 import { useAudio } from '../hooks/useAudio';
-import { useVoxelize } from '../hooks/useVoxelize';
+import { useVoxelize } from '../hooks/useVoxelverses';
 
 const WALL_JUMP_IMPULSE = 16;
 const WALL_JUMP_UP_IMPULSE = 20;

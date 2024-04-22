@@ -1,4 +1,4 @@
-import type { World } from '@voxelize/core';
+import type { World } from '@voxelverses/core';
 import { Group } from 'three';
 
 export class BlockEntities extends Group {

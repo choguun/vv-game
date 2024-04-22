@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useVoxelize } from '../hooks/useVoxelize';
+import { useVoxelize } from '../hooks/useVoxelverses';
 
 export function Menu() {
   const { inputs, rigidControls } = useVoxelize();

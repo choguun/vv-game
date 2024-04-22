@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 
-import { type BlockUpdate, type Coords3 } from '@voxelize/core';
+import { type BlockUpdate, type Coords3 } from '@voxelverses/core';
 import { Raycaster, Vector2, Vector3 } from 'three';
 
 import BlockSound from '../assets/sounds/game/block.ogg';
 import { useAudio } from '../hooks/useAudio';
-import { useVoxelize } from '../hooks/useVoxelize';
+import { useVoxelize } from '../hooks/useVoxelverses';
 import { isAdmin } from '../utils/isAdmin';
 
 const maxRadius = 5;

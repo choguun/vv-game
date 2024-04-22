@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { useVoxelize } from '../hooks/useVoxelize';
+import { useVoxelize } from '../hooks/useVoxelverses';
 
 export function Tooltip() {
   const tooltipDomRef = useRef<HTMLParagraphElement>(null);

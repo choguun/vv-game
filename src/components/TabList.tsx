@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { knownWorlds } from '../constants';
-import { useVoxelize } from '../hooks/useVoxelize';
+import { useVoxelize } from '../hooks/useVoxelverses';
 import { getCoreUrl } from '../utils/urls';
 
 import { ColorText } from '@/src/components/ColorText';

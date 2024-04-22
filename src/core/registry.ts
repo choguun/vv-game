@@ -1,4 +1,4 @@
-import { customShaders, type World } from '@voxelize/core';
+import { customShaders, type World } from '@voxelverses/core';
 // @ts-ignore
 import { Noise } from 'noisejs';
 import { CanvasTexture, Color, NearestFilter, SRGBColorSpace } from 'three';
@@ -68,16 +68,15 @@ import MCJSLegacy from '../assets/images/ui/mc.js-legacy.png';
 import MCJS from '../assets/images/ui/mcjs.png';
 import MineJS from '../assets/images/ui/minejs.png';
 import RSTS from '../assets/images/ui/rust-ts.png';
-import Voxelize from '../assets/images/ui/voxelize.png';
-import Water from '../assets/voxelize/own/water.png';
-import Dirt from '../assets/voxelize/pixel-perfection/dirt.png';
-import Grass from '../assets/voxelize/pixel-perfection/grass.png';
-import GrassBlockSide from '../assets/voxelize/pixel-perfection/grass_side.png';
-import GrassBlockTop from '../assets/voxelize/pixel-perfection/grass_top.png';
-import OakLeaves from '../assets/voxelize/pixel-perfection/leaves_oak.png';
-import OakLogSide from '../assets/voxelize/pixel-perfection/log_oak_side.png';
-import OakLogTop from '../assets/voxelize/pixel-perfection/log_oak_top.png';
-import Stone from '../assets/voxelize/pixel-perfection/stone.png';
+import Water from '../assets/voxelverses/own/water.png';
+import Dirt from '../assets/voxelverses/pixel-perfection/dirt.png';
+import Grass from '../assets/voxelverses/pixel-perfection/grass.png';
+import GrassBlockSide from '../assets/voxelverses/pixel-perfection/grass_side.png';
+import GrassBlockTop from '../assets/voxelverses/pixel-perfection/grass_top.png';
+import OakLeaves from '../assets/voxelverses/pixel-perfection/leaves_oak.png';
+import OakLogSide from '../assets/voxelverses/pixel-perfection/log_oak_side.png';
+import OakLogTop from '../assets/voxelverses/pixel-perfection/log_oak_top.png';
+import Stone from '../assets/voxelverses/pixel-perfection/stone.png';
 
 const noise = new Noise(Math.random());
 
@@ -401,7 +400,6 @@ export async function makeRegistry(world: World, updateHooks: (() => void)[]) {
     'cuppz',
     GraphQL,
   );
-  await world.applyBlockTexture('Trophy (voxelize)', 'cuppz', Voxelize);
   await world.applyBlockTexture('Trophy (mc.js-legacy)', 'cuppz', MCJSLegacy);
   await world.applyBlockTexture(
     'Trophy (rust-typescript-template)',
@@ -544,7 +542,7 @@ export async function makeRegistry(world: World, updateHooks: (() => void)[]) {
         if (frameCount % 10 !== 0) {
           return;
         }
-        
+
         ctx.clearRect(
           0,
           0,

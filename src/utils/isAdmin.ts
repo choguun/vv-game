@@ -3,5 +3,5 @@ export function isAdmin() {
   if (!key) {
     throw new Error('ADMIN KEY KEY NOT SET???');
   }
-  return localStorage.getItem('shaoruu.io-admin') === key;
+  return localStorage.getItem('voxelverses-admin') === key;
 }

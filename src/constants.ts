@@ -5,7 +5,7 @@ export const twitterLink = 'https://www.twitter.com/shaoruu';
 export const mailLink = 'mailto:ian1314159@gmail.com';
 export const buyMeACoffeeLink = 'https://www.buymeacoffee.com/shaoruu';
 
-export const voxelizeWorldLocalStorageKey = 'voxelize-world-name';
+export const voxelizeWorldLocalStorageKey = 'voxelverses-world-name';
 const potentialWorldName =
   new URLSearchParams(window.location.search).get('world') ??
   localStorage.getItem(voxelizeWorldLocalStorageKey) ??

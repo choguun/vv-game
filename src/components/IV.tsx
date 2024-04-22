@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 
 import { Vector3 } from 'three';
 
-import { ImageVoxelizer } from '../core/image-voxelizer';
-import { useVoxelize } from '../hooks/useVoxelize';
+import { ImageVoxelizer } from '../core/image-voxelverses';
+import { useVoxelize } from '../hooks/useVoxelverses';
 import { isAdmin } from '../utils/isAdmin';
 
 export const IV = () => {

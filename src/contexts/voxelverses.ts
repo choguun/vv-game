@@ -16,11 +16,11 @@ import type {
   Shadows,
   VoxelInteract,
   World,
-} from '@voxelize/core';
+} from '@voxelverses/core';
 import type { GUI } from 'dat.gui';
 import type { PerspectiveCamera } from 'three';
 
-import type { PeersData } from '../containers/Providers/Voxelverse';
+import type { PeersData } from '../containers/Providers/Voxelverses';
 import type { BlockEntities } from '../core/block-entities';
 import type { Triggers } from '../core/trigger';
 import type { ChatItem } from '../types';

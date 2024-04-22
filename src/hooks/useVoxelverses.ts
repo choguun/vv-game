@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { VoxelizeContext } from '../contexts/voxelize';
+import { VoxelizeContext } from '../contexts/voxelverses';
 
 export function useVoxelize() {
   return useContext(VoxelizeContext);

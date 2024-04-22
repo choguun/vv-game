@@ -589,11 +589,11 @@ export class World<T = any> extends Scene implements NetIntercept {
 
     blockFaces.forEach((face) => {
       if (face.isolated) {
-        // console.warn(
-        //   "Attempting to apply texture onto an isolated face: ",
-        //   block.name,
-        //   face.name
-        // );
+        console.warn(
+          "Attempting to apply texture onto an isolated face: ",
+          block.name,
+          face.name
+        );
         return;
       }
 
@@ -807,9 +807,9 @@ export class World<T = any> extends Scene implements NetIntercept {
     this.checkIsInitialized("apply GIF animation", false);
 
     if (!source.endsWith(".gif")) {
-      // console.warn(
-      //   "There's a chance that this file isn't a GIF as it doesn't end with .gif"
-      // );
+      console.warn(
+        "There's a chance that this file isn't a GIF as it doesn't end with .gif"
+      );
     }
 
     // Load the keyframes from this GIF.
@@ -1480,9 +1480,9 @@ export class World<T = any> extends Scene implements NetIntercept {
         }
 
         if (isDynamic && !dynamicFn) {
-          // console.warn(
-          //   `Block of ID ${id} is dynamic but has no dynamic function.`
-          // );
+          console.warn(
+            `Block of ID ${id} is dynamic but has no dynamic function.`
+          );
         }
 
         if (
@@ -1649,7 +1649,7 @@ export class World<T = any> extends Scene implements NetIntercept {
         const currRot = this.getVoxelRotationAt(vx, vy, vz);
 
         if (!this.getBlockById(type)) {
-          // console.warn(`Block ID ${type} does not exist.`);
+          console.warn(`Block ID ${type} does not exist.`);
           return false;
         }
 
@@ -2077,7 +2077,7 @@ export class World<T = any> extends Scene implements NetIntercept {
    */
   async initialize() {
     if (this.isInitialized) {
-      // console.warn("World has already been isInitialized.");
+      console.warn("World has already been isInitialized.");
       return;
     }
 
@@ -2334,7 +2334,7 @@ export class World<T = any> extends Scene implements NetIntercept {
       try {
         data = JSON.parse(metadata.json);
       } catch (error) {
-        // console.error("Error parsing block entity JSON:", error);
+        console.error("Error parsing block entity JSON:", error);
         data = null;
       }
 
@@ -2820,7 +2820,7 @@ export class World<T = any> extends Scene implements NetIntercept {
 
           // if not even isolated, we don't want to care about it
           if (!face.isolated || !at) {
-            // console.warn("Unlikely situation happened..."); // todo: better console log
+            console.warn("Unlikely situation happened..."); // todo: better console log
             return;
           }
 
@@ -2945,9 +2945,9 @@ export class World<T = any> extends Scene implements NetIntercept {
     const updatesLoopStartTime = performance.now(); // Timing start for updates loop
     for (const update of updates) {
       if (performance.now() - processStartTime > maxLightsUpdateTime) {
-        // console.warn(
-        //   "Approaching max lights update time, adjusting processing."
-        // );
+        console.warn(
+          "Approaching max lights update time, adjusting processing."
+        );
         break;
       }
 

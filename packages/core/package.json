@@ -1,11 +1,11 @@
 {
-  "name": "@voxelize/core",
+  "name": "@voxelverses/core",
   "version": "0.1.177",
   "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "umd": "dist/voxelize.min.js",
+  "umd": "dist/voxelverses.min.js",
   "files": [
     "dist"
   ],

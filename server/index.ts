@@ -25,8 +25,9 @@ if (process.env.NODE_ENV === 'development') {
     cors({
       origin: (origin, callback) => {
         const allowedOrigins = [
-          'https://hi.shaoruu.io',
           'https://localhost:3001',
+          'https://voxelverses.xyz',
+          'http://54.254.240.216:3001',
         ]; // Add more origins as needed
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
           callback(null, true);

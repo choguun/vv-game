@@ -1,4 +1,4 @@
-import { ColorText as VoxelizeColorText } from '@voxelize/core';
+import { ColorText as VoxelizeColorText } from '@voxelverses/core';
 
 export const ColorText = ({
   children,

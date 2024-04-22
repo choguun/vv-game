@@ -11,7 +11,7 @@ import { currentWorldName } from '../constants';
 import { Chat } from '@/src/containers/Chat';
 import { LinkBlocks } from '@/src/containers/LinkBlocks';
 import { AudioProvider } from '@/src/containers/Providers/Audio';
-import { VoxelizeProvider } from '@/src/containers/Providers/Voxelize';
+import { VoxelizeProvider } from '@/src/containers/Providers/Voxelverse';
 
 export function App() {
   return (

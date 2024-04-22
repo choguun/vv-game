@@ -20,7 +20,7 @@ import type {
 import type { GUI } from 'dat.gui';
 import type { PerspectiveCamera } from 'three';
 
-import type { PeersData } from '../containers/Providers/Voxelize';
+import type { PeersData } from '../containers/Providers/Voxelverse';
 import type { BlockEntities } from '../core/block-entities';
 import type { Triggers } from '../core/trigger';
 import type { ChatItem } from '../types';

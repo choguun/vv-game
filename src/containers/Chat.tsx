@@ -111,7 +111,7 @@ export function Chat() {
         const fetch = async () => {
           const response = await axios(`${getServerUrl()}/contributions`);
           const { result } = response.data;
-          console.log(result);
+          // console.log(result);
         };
 
         fetch();
@@ -238,7 +238,7 @@ export function Chat() {
 
         if (found) {
           placeTextAt(newText, [x + 0.5, y + 0.5, z + 0.5]);
-          console.log(`Text at [${x}, ${y}, ${z}] changed to "${newText}"`);
+          // console.log(`Text at [${x}, ${y}, ${z}] changed to "${newText}"`);
         } else {
           console.warn('No text found at the target location to change');
         }
@@ -246,7 +246,7 @@ export function Chat() {
 
       chat.addCommand('potential', () => {
         const { potential } = voxelInteract;
-        console.log(potential);
+        // console.log(potential);
       });
 
       chat.addCommand('remove-text', () => {

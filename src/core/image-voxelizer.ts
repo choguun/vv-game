@@ -132,7 +132,7 @@ export class ImageVoxelizer {
       ...partialOptions,
     } as ImageVoxelizerOptions;
 
-    console.log(`Starting to voxelize image: ${imgURL}`);
+    // console.log(`Starting to voxelize image: ${imgURL}`);
 
     const getPixelAt = (
       context: CanvasRenderingContext2D,
@@ -262,7 +262,7 @@ export class ImageVoxelizer {
         canvas.width = width;
         canvas.height = height;
         orientation = orientation.toLowerCase() as 'x' | 'z';
-        console.log(
+        // console.log(
           `Voxelizing original image (${original.width}, ${original.height}) to (${width}, ${height})`,
         );
         context.drawImage(

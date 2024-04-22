@@ -14,14 +14,14 @@ export class BlockEntities extends Group {
   handleRightClickAt = (vx: number, vy: number, vz: number) => {
     const data = this.world.getBlockEntityDataAt(vx, vy, vz);
     const block = this.world.getBlockAt(vx, vy, vz);
-    console.log(data, block);
+    // console.log(data, block);
     this.world.setBlockEntityDataAt(vx, vy, vz, {
       bozo: 'stringy',
     });
   };
 
   handleBlockEntityUpdate = (args) => {
-    console.log(args);
+    // console.log(args);
   };
 
   registerListenersToWorld = (world: World) => {

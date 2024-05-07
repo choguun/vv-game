@@ -135,7 +135,7 @@ async fn main() -> std::io::Result<()> {
             .allowed_origin("http://54.254.240.216:3001")
             .allowed_origin("http://54.254.240.216:4000")
             .allowed_origin("https://voxelverses.xyz")
-            .allowed_origin("https://vv-app.vercel.app");
+            .allowed_origin("https://cubesland.xyz");
 
         let app = App::new()
             .wrap(cors)

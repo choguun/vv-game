@@ -27,13 +27,16 @@ export function Inventory() {
     }
 
     const unbind = inputs.bind(
-      'e',
+      'KeyE',
       () => {
         setShouldShowInventory((prev) => !prev);
         rigidControls.unlock();
         rigidControls.resetMovements();
       },
       'in-game',
+      {
+        checkType: 'code',
+      },
     );
 
     return () => {

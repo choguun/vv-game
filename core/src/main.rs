@@ -90,6 +90,7 @@ async fn main() -> std::io::Result<()> {
 
     let mut server = Server::new()
         .port(4000)
+        .interval(4)
         .secret("test")
         .serve("../dist")
         .registry(&registry)
@@ -104,6 +105,9 @@ async fn main() -> std::io::Result<()> {
     // server
     //     .add_world(worlds::setup_flat2_world(&registry))
     //     .expect("Failed to add the flat2 world");
+    server
+        .add_world(worlds::setup_lab_world(&registry))
+        .expect("Failed to add the lab world");
     server
         .add_world(worlds::setup_terrain_world(&registry))
         .expect("Failed to add the terrain world");

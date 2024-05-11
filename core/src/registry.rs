@@ -1,7 +1,7 @@
 use voxelize::{
     Block, BlockConditionalPart, BlockDynamicPattern, BlockFace, BlockFaces, BlockRotation,
-    BlockRule, BlockRuleLogic, BlockSimpleRule, Registry, Vec3, VoxelPacker, AABB, SIX_FACES_NX,
-    SIX_FACES_PX, SIX_FACES_PY, SIX_FACES_PZ,
+    BlockRule, BlockRuleLogic, BlockSimpleRule, Registry, Vec3, VoxelPacker, YRotatableSegments,
+    AABB, SIX_FACES_NX, SIX_FACES_NZ, SIX_FACES_PX, SIX_FACES_PY, SIX_FACES_PZ,
 };
 
 const PLANT_SCALE: f32 = 0.6;
@@ -58,6 +58,7 @@ pub fn get_registry() -> Registry {
     let grass_faces = BlockFaces::diagonal_faces()
         .scale_horizontal(PLANT_SCALE)
         .scale_vertical(PLANT_SCALE)
+        // .to_four()
         .build();
 
     let fence_id = 50000;
@@ -364,7 +365,16 @@ pub fn get_registry() -> Registry {
     let portal2_block = Block::new("Portal2")
         .id(15124)
         .faces(&portal_faces)
-        .aabbs(&[portal_aabb])
+        .aabbs(&[portal_aabb.clone()])
+        .is_transparent(true)
+        .is_see_through(true)
+        .is_passable(true)
+        .torch_light_level(15)
+        .build();
+    let portal3_block = Block::new("Portal3")
+        .id(15125)
+        .faces(&portal_faces)
+        .aabbs(&[portal_aabb.clone()])
         .is_transparent(true)
         .is_see_through(true)
         .is_passable(true)
@@ -373,6 +383,7 @@ pub fn get_registry() -> Registry {
 
     registry.register_block(&portal_block);
     registry.register_block(&portal2_block);
+    registry.register_block(&portal3_block);
 
     let make_top_slab = |name: &str, id: u32| {
         Block::new(name)
@@ -416,8 +427,8 @@ pub fn get_registry() -> Registry {
             .id(id)
             .faces(&stairs_faces)
             .aabbs(&stairs_aabbs)
-            .rotatable(true)
             .y_rotatable(true)
+            .y_rotatable_segments(&YRotatableSegments::Four)
             .is_transparent(true)
             .build()
     };
@@ -720,7 +731,12 @@ pub fn get_registry() -> Registry {
         Block::new("Flint").id(310).build(),
         Block::new("Moonstone").id(311).torch_light_level(8).build(),
         Block::new("Aquamarine").id(312).build(),
-        Block::new("Sunstone").id(313).torch_light_level(15).build(),
+        Block::new("Sunstone")
+            .id(313)
+            .red_light_level(15)
+            .green_light_level(14)
+            .blue_light_level(12)
+            .build(),
         Block::new("Opal").id(314).build(),
         Block::new("Bloodstone").id(315).build(),
         Block::new("Rose Quartz").id(316).build(),
@@ -1118,6 +1134,26 @@ pub fn get_registry() -> Registry {
         make_stairs("Ivory Stairs", 5014),
         make_stairs("Stone Stairs", 5015),
     ]);
+
+    let two_by_three_painting_faces = BlockFaces::six_faces()
+        .scale_z(0.1)
+        .offset_z(0.9)
+        .scale_x(3.0)
+        .offset_x(-1.0)
+        .scale_y(2.0)
+        .build()
+        .isolated_at(SIX_FACES_NZ);
+    let two_by_three_painting = Block::new("2x3 Painting")
+        .id(23050)
+        .faces(&two_by_three_painting_faces)
+        .aabbs(&[AABB::new().scale_z(0.1).offset_z(0.9).build()])
+        .rotatable(true)
+        .y_rotatable(true)
+        .is_passable(true)
+        .is_transparent(true)
+        .is_entity(true)
+        .build();
+    registry.register_block(&two_by_three_painting);
 
     let carpet_faces = BlockFaces::six_faces().scale_y(0.05).build();
     let carpet_aabbs = [AABB::from_faces(&carpet_faces)];

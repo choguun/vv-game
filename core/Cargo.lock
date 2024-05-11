@@ -590,6 +590,7 @@ dependencies = [
  "log",
  "nanoid",
  "pathfinding",
+ "rand",
  "rayon",
  "serde",
  "serde_json",

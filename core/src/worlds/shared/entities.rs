@@ -29,11 +29,11 @@ pub fn setup_entities(world: &mut World) {
                     .unwrap_or_else(|| TargetComp(TargetType::Players, None)),
             )
             .with(metadata.get::<PositionComp>("position").unwrap_or_default())
-            .with(
-                metadata
-                    .get::<PathComp>("path")
-                    .unwrap_or_else(|| PathComp::new(12, 15.0)),
-            )
+            // .with(
+            //     metadata
+            //         .get::<PathComp>("path")
+            //         .unwrap_or_else(|| PathComp::new(12, 15.0)),
+            // )
             .with(metadata.get::<RotationComp>("rotation").unwrap_or_default())
             .with(RigidBodyComp::new(&body))
             .with(InteractorComp::new(&interactor))

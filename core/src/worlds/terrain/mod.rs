@@ -153,7 +153,7 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
     terrain.add_biome(&[-cap, cap, -cap], Biome::new("Biome 19", "Biome Test 19"));
     terrain.add_biome(&[-cap, -cap, cap], Biome::new("Biome 20", "Biome Test 20"));
 
-    {
+    {   
         let mut pipeline = world.pipeline_mut();
 
         let mut terrain_stage = BaseTerrainStage::new(terrain);
@@ -200,7 +200,7 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
         oak_trees.set_threshold(4.5);
         let oak = Tree::new(5004, 5003)
             .leaf_height(3)
-            .leaf_radius(3)
+            .leaf_radius(5)
             .branch_initial_radius(3)
             .branch_initial_length(7)
             .branch_radius_factor(0.8)

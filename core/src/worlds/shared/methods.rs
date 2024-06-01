@@ -48,6 +48,16 @@ pub fn setup_methods(world: &mut World) {
         world.spawn_entity_at("bot", &data.position);
     });
 
+    world.set_method_handle("spawn-merchant-npc", |world, _, payload| {
+        let data: SpawnMethodPayload = serde_json::from_str(&payload).unwrap();
+        world.spawn_entity_at("merchant-npc", &data.position);
+    });
+
+    world.set_method_handle("spawn-quest-npc", |world, _, payload| {
+        let data: SpawnMethodPayload = serde_json::from_str(&payload).unwrap();
+        world.spawn_entity_at("quest-npc", &data.position);
+    });
+
     world.set_method_handle("kill-all-bots", |world, _, _| {
         let bot_entities = world
             .ecs()
@@ -60,6 +70,28 @@ pub fn setup_methods(world: &mut World) {
                     .get(*entity)
                     .is_some()
                     && world.ecs().read_storage::<BotFlag>().get(*entity).is_some()
+            })
+            .collect::<Vec<_>>();
+
+        for entity in bot_entities {
+            world
+                .ecs_mut()
+                .delete_entity(entity)
+                .expect("Failed to delete entity");
+        }
+    });
+
+    world.set_method_handle("kill-all-npcs", |world, _, _| {
+        let bot_entities = world
+            .ecs()
+            .entities()
+            .join()
+            .filter(|entity| {
+                world
+                    .ecs()
+                    .read_storage::<EntityFlag>()
+                    .get(*entity)
+                    .is_some()
             })
             .collect::<Vec<_>>();
 

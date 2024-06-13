@@ -1004,7 +1004,7 @@ pub fn get_registry() -> Registry {
     let trophy_aabbs = [AABB::from_faces(&trophy)];
 
     registry.register_blocks(&[
-        Block::new("Trophy (mc.js)")
+        Block::new("Trophy 1")
             .id(2500)
             .faces(&trophy)
             .aabbs(&trophy_aabbs)
@@ -1012,7 +1012,7 @@ pub fn get_registry() -> Registry {
             .y_rotatable(true)
             .torch_light_level(15)
             .build(),
-        Block::new("Trophy (modern-graphql-tutorial)")
+        Block::new("Trophy 2")
             .id(2501)
             .faces(&trophy)
             .aabbs(&trophy_aabbs)
@@ -1020,7 +1020,7 @@ pub fn get_registry() -> Registry {
             .y_rotatable(true)
             .torch_light_level(15)
             .build(),
-        Block::new("Trophy (mine.js)")
+        Block::new("Trophy 3")
             .id(2502)
             .faces(&trophy)
             .aabbs(&trophy_aabbs)
@@ -1028,7 +1028,7 @@ pub fn get_registry() -> Registry {
             .y_rotatable(true)
             .torch_light_level(15)
             .build(),
-        Block::new("Trophy (voxelize)")
+        Block::new("Trophy 4")
             .id(2503)
             .faces(&trophy)
             .aabbs(&trophy_aabbs)
@@ -1036,7 +1036,7 @@ pub fn get_registry() -> Registry {
             .y_rotatable(true)
             .torch_light_level(15)
             .build(),
-        Block::new("Trophy (mc.js-legacy)")
+        Block::new("Trophy 5")
             .id(2504)
             .faces(&trophy)
             .aabbs(&trophy_aabbs)
@@ -1044,7 +1044,7 @@ pub fn get_registry() -> Registry {
             .y_rotatable(true)
             .torch_light_level(15)
             .build(),
-        Block::new("Trophy (rust-typescript-template)")
+        Block::new("Trophy 6")
             .id(2505)
             .faces(&trophy)
             .aabbs(&trophy_aabbs)
@@ -1052,7 +1052,7 @@ pub fn get_registry() -> Registry {
             .y_rotatable(true)
             .torch_light_level(15)
             .build(),
-        Block::new("Trophy (lunar-lander-ai)")
+        Block::new("Trophy 7")
             .id(2506)
             .faces(&trophy)
             .aabbs(&trophy_aabbs)

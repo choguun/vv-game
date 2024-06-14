@@ -140,6 +140,7 @@ async fn main() -> std::io::Result<()> {
             .allowed_origin("http://54.254.240.216:4000")
             .allowed_origin("https://voxelverses.xyz")
             .allowed_origin("https://beta.voxelverses.xyz")
+            .allowed_origin("https://zksync.voxelverses.xyz")
             .allowed_origin("https://cubesland.xyz")
             .allowed_origin("https://www.cubesland.xyz");
 

@@ -15,6 +15,10 @@ use actix_web::{
 use actix_web_actors::ws;
 use hashbrown::HashMap;
 use log::{info, warn};
+use sysinfo::{System, SystemExt, ProcessExt};
+use chrono::Local;
+use tokio::task;
+use std::time::Duration;
 
 struct Config {
     serve: String,
@@ -86,6 +90,37 @@ async fn info(server: web::Data<Addr<Server>>) -> Result<HttpResponse> {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+       // Spawn a separate task for CPU usage monitoring
+       task::spawn(async {
+        let mut system = System::new_all();
+
+        loop {
+            // Refresh system information
+            system.refresh_all();
+
+            // Get current time
+            let now = Local::now();
+            println!("Time: {}", now);
+
+            // Get CPU usage for each process
+            let mut processes: Vec<_> = system.processes()
+                .iter()
+                .map(|(_, process)| (process.name(), process.cpu_usage()))
+                .collect();
+
+            // Sort processes by CPU usage in descending order
+            processes.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap());
+
+            // Print the top 10 processes by CPU usage
+            for (name, cpu_usage) in processes.iter().take(10) {
+                println!("{}: {}%", name, cpu_usage);
+            }
+
+            // Sleep for a while before the next update
+            tokio::time::sleep(Duration::from_secs(5)).await;
+        }
+    });
+
     let registry = get_registry();
 
     let mut server = Server::new()
@@ -96,18 +131,18 @@ async fn main() -> std::io::Result<()> {
         .registry(&registry)
         .build();
 
-    server
-        .add_world(worlds::setup_main_world(&registry))
-        .expect("Failed to add the main world");
+    // server
+    //     .add_world(worlds::setup_main_world(&registry))
+    //     .expect("Failed to add the main world");
     // server
     //     .add_world(worlds::setup_flat_world(&registry))
     //     .expect("Failed to add the flat world");
     // server
     //     .add_world(worlds::setup_flat2_world(&registry))
     //     .expect("Failed to add the flat2 world");
-    server
-        .add_world(worlds::setup_lab_world(&registry))
-        .expect("Failed to add the lab world");
+    // server
+    //     .add_world(worlds::setup_lab_world(&registry))
+    //     .expect("Failed to add the lab world");
     server
         .add_world(worlds::setup_terrain_world(&registry))
         .expect("Failed to add the terrain world");
@@ -167,6 +202,8 @@ async fn main() -> std::io::Result<()> {
     .bind((addr.to_owned(), port.to_owned()))?;
 
     info!("🍄  Voxelize backend running on http://{}:{}", addr, port);
+
+    let mut system = System::new_all();
 
     srv.run().await
 }

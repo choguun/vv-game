@@ -136,12 +136,18 @@ async fn main() -> std::io::Result<()> {
             .allowed_origin("http://localhost:3000")
             .allowed_origin("http://localhost:3001")
             .allowed_origin("http://localhost:3002")
+            .allowed_origin("http://localhost:4000")
+            .allowed_origin("http://54.254.240.216:3000")
+            .allowed_origin("http://54.254.240.216:3001")
+            .allowed_origin("http://54.254.240.216:4000")
+            .allowed_origin("https://voxelverses.xyz")
             .allowed_origin("https://beta.voxelverses.xyz")
             .allowed_origin("https://zksync.voxelverses.xyz")
             .allowed_origin("https://base.voxelverses.xyz")
             .allowed_origin("https://manta.voxelverses.xyz")
             .allowed_origin("https://testnet.voxelverses.xyz")
             .allowed_origin("https://zeta.voxelverses.xyz")
+            .allowed_origin("https://playtest.voxelverses.xyz")
             .allowed_origin("https://cubesland.xyz")
             .allowed_origin("https://www.cubesland.xyz");
 

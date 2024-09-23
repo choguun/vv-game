@@ -1,1 +1,0 @@
-{"version":3,"file":"interval-worker.d.ts","sourceRoot":"","sources":["../../../src/libs/workers/interval-worker.ts"],"names":[],"mappings":"AAEA,KAAK,aAAa,GAAG;IACnB,QAAQ,CAAC,EAAE,MAAM,CAAC;IAClB,MAAM,EAAE,OAAO,GAAG,MAAM,CAAC;CAC1B,CAAC;AAEF,QAAA,IAAI,UAAU,EAAE,MAAM,GAAG,IAAW,CAAC;AAErC,iBAAS,qBAAqB,SAK7B"}

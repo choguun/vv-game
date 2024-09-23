@@ -15,10 +15,6 @@ use actix_web::{
 use actix_web_actors::ws;
 use hashbrown::HashMap;
 use log::{info, warn};
-use sysinfo::{System, SystemExt, ProcessExt};
-use chrono::Local;
-use tokio::task;
-use std::time::Duration;
 
 struct Config {
     serve: String,
@@ -74,14 +70,14 @@ async fn ws_route(
 }
 
 /// Main website path, serving statically built index.html
-async fn index(path: web::Data<Config>) -> Result<NamedFile> {
-    let path = path.serve.to_owned();
-    Ok(NamedFile::open(if path.ends_with("/") {
-        path + "index.html"
-    } else {
-        path + "/index.html"
-    })?)
-}
+// async fn index(path: web::Data<Config>) -> Result<NamedFile> {
+//     let path = path.serve.to_owned();
+//     Ok(NamedFile::open(if path.ends_with("/") {
+//         path + "index.html"
+//     } else {
+//         path + "/index.html"
+//     })?)
+// }
 
 async fn info(server: web::Data<Addr<Server>>) -> Result<HttpResponse> {
     let info = server.send(Info).await.unwrap();
@@ -90,36 +86,6 @@ async fn info(server: web::Data<Addr<Server>>) -> Result<HttpResponse> {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-       // Spawn a separate task for CPU usage monitoring
-       task::spawn(async {
-        let mut system = System::new_all();
-
-        loop {
-            // Refresh system information
-            system.refresh_all();
-
-            // Get current time
-            let now = Local::now();
-            println!("Time: {}", now);
-
-            // Get CPU usage for each process
-            let mut processes: Vec<_> = system.processes()
-                .iter()
-                .map(|(_, process)| (process.name(), process.cpu_usage()))
-                .collect();
-
-            // Sort processes by CPU usage in descending order
-            processes.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap());
-
-            // Print the top 10 processes by CPU usage
-            for (name, cpu_usage) in processes.iter().take(10) {
-                println!("{}: {}%", name, cpu_usage);
-            }
-
-            // Sleep for a while before the next update
-            tokio::time::sleep(Duration::from_secs(5)).await;
-        }
-    });
 
     let registry = get_registry();
 
@@ -127,7 +93,7 @@ async fn main() -> std::io::Result<()> {
         .port(4000)
         .interval(4)
         .secret("test")
-        .serve("../dist")
+        // .serve("../dist")
         .registry(&registry)
         .build();
 
@@ -169,16 +135,13 @@ async fn main() -> std::io::Result<()> {
         let cors = Cors::default()
             .allowed_origin("http://localhost:3000")
             .allowed_origin("http://localhost:3001")
-            .allowed_origin("http://localhost:4000")
-            .allowed_origin("http://54.254.240.216:3000")
-            .allowed_origin("http://54.254.240.216:3001")
-            .allowed_origin("http://54.254.240.216:4000")
-            .allowed_origin("https://voxelverses.xyz")
+            .allowed_origin("http://localhost:3002")
             .allowed_origin("https://beta.voxelverses.xyz")
             .allowed_origin("https://zksync.voxelverses.xyz")
             .allowed_origin("https://base.voxelverses.xyz")
             .allowed_origin("https://manta.voxelverses.xyz")
             .allowed_origin("https://testnet.voxelverses.xyz")
+            .allowed_origin("https://zeta.voxelverses.xyz")
             .allowed_origin("https://cubesland.xyz")
             .allowed_origin("https://www.cubesland.xyz");
 
@@ -189,9 +152,9 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(Config {
                 serve: serve.to_owned(),
             }))
-            .route("/", web::get().to(index))
-            .route("/ws/", web::get().to(ws_route))
-            .route("/info", web::get().to(info));
+            // .route("/", web::get().to(index))
+            .route("/ws/", web::get().to(ws_route));
+            // .route("/info", web::get().to(info));
 
         if serve.is_empty() {
             app
@@ -202,8 +165,6 @@ async fn main() -> std::io::Result<()> {
     .bind((addr.to_owned(), port.to_owned()))?;
 
     info!("🍄  Voxelize backend running on http://{}:{}", addr, port);
-
-    let mut system = System::new_all();
 
     srv.run().await
 }

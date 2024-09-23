@@ -1,1 +1,0 @@
-{"version":3,"file":"cull-worker.d.ts","sourceRoot":"","sources":["../../../src/libs/workers/cull-worker.ts"],"names":[],"mappings":"AAAA,QAAA,MAAM,KAAK;;;GA6DV,CAAC;AAEF,iBAAS,GAAG,CACV,GAAG,EAAE,UAAU,EACf,CAAC,EAAE,MAAM,EACT,CAAC,EAAE,MAAM,EACT,CAAC,EAAE,MAAM,EACT,MAAM,EAAE,MAAM,EAAE,UAIjB;AAED,iBAAS,QAAQ,CAAC,KAAK,KAAA,EAAE,GAAG,KAAA,EAAE,GAAG,KAAA,WAKhC"}

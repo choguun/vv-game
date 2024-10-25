@@ -158,6 +158,8 @@ pub struct BaseTerrainStage {
     threshold: f64,
     base: u32,
     terrain: Terrain,
+    lowest_layer_block: Option<u32>, // Add this field
+    lowest_layer_depth: u32,         // Add this field to specify depth of lowest layer
 }
 
 impl BaseTerrainStage {
@@ -166,6 +168,8 @@ impl BaseTerrainStage {
             threshold: 0.0,
             base: 0,
             terrain,
+            lowest_layer_block: None, // Default to None
+            lowest_layer_depth: 1,    // Default depth of 1
         }
     }
 
@@ -175,6 +179,12 @@ impl BaseTerrainStage {
 
     pub fn set_threshold(&mut self, threshold: f64) {
         self.threshold = threshold;
+    }
+
+    // New function to set the lowest layer block and depth
+    pub fn set_lowest_layer(&mut self, block: u32, depth: u32) {
+        self.lowest_layer_block = Some(block);
+        self.lowest_layer_depth = depth;
     }
 }
 
@@ -187,9 +197,21 @@ impl ChunkStage for BaseTerrainStage {
         let Vec3(min_x, min_y, min_z) = chunk.min;
         let Vec3(max_x, max_y, max_z) = chunk.max;
 
+        // Add specified block at the lowest layer
+        if let Some(block_id) = self.lowest_layer_block {
+            for vx in min_x..max_x {
+                for vz in min_z..max_z {
+                    for vy in min_y..(min_y + self.lowest_layer_depth as i32) {
+                        chunk.set_voxel(vx, vy, vz, block_id);
+                    }
+                }
+            }
+        }
+
+        // Process other terrain layers as usual
         for vx in min_x..max_x {
             for vz in min_z..max_z {
-                for vy in min_y..max_y {
+                for vy in min_y + self.lowest_layer_depth as i32..max_y {
                     let (bias, offset) = self.terrain.get_bias_offset(vx, vy, vz);
                     let density = self.terrain.get_density_from_bias_offset(bias, offset, vy);
 
@@ -203,7 +225,6 @@ impl ChunkStage for BaseTerrainStage {
         chunk
     }
 }
-
 /// A pipeline is strictly for holding the stages necessary to build the chunks.
 pub struct Pipeline {
     /// A list of stages that chunks are in.

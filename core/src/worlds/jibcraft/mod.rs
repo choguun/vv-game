@@ -160,6 +160,8 @@ pub fn setup_jibcraft_world(registry: &Registry) -> World {
         let mut terrain_stage = BaseTerrainStage::new(terrain);
         terrain_stage.set_base(50);
         terrain_stage.set_threshold(0.0);
+        terrain_stage.set_lowest_layer(registry.get_block_by_name("Coral").id, 1); // Set "Coral" block at depth 1
+
 
         pipeline.add_stage(terrain_stage);
 

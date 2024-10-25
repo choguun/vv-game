@@ -120,7 +120,7 @@ impl<'a> System<'a> for PathFindingSystem {
         (&bodies, &targets, &mut paths)
             .par_join()
             .for_each(|(body, target, entity_path)| {
-                if let Some(target) = target.1.to_owned() {
+                if let Some(target) = target.position.to_owned() {
                     let body_pos = body.0.get_position();
 
                     let height = body.0.aabb.height();

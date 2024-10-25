@@ -1,5 +1,6 @@
 mod soiling;
 mod tree;
+mod flatcenter;
 
 use voxelize::{
     BaseTerrainStage, Biome, LSystem, NoiseOptions, Registry, Terrain, TerrainLayer, Tree, Trees,
@@ -8,7 +9,7 @@ use voxelize::{
 
 use crate::constants::get_preload_radius;
 
-use self::{soiling::SoilingStage, tree::TreeStage};
+use self::{soiling::SoilingStage, tree::TreeStage, flatcenter::FlatCenterStage};
 
 use super::shared::{
     client::setup_client, components::setup_components, entities::setup_entities,
@@ -17,13 +18,13 @@ use super::shared::{
 
 use std::f64;
 
-pub const MOUNTAIN_HEIGHT: f64 = 1.0;
+pub const MOUNTAIN_HEIGHT: f64 = 2.0;
 pub const RIVER_HEIGHT: f64 = 0.25;
-pub const PLAINS_HEIGHT: f64 = 0.347;
+pub const PLAINS_HEIGHT: f64 = 0.367;
 pub const RIVER_WIDTH: f64 = 0.36;
 
 pub fn setup_terrain_world(registry: &Registry) -> World {
-    let config = WorldConfig::new()
+        let config = WorldConfig::new()
         .terrain(
             &NoiseOptions::new()
                 .frequency(0.005)
@@ -53,10 +54,10 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
     let continentalness = TerrainLayer::new(
         "continentalness",
         &NoiseOptions::new()
-            .frequency(0.0005)
+            .frequency(0.0015)
             .octaves(7)
             .persistence(0.52)
-            .lacunarity(2.3)
+            .lacunarity(1.9)
             .seed(1231252)
             .build(),
     )
@@ -99,7 +100,8 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
     let erosion = TerrainLayer::new(
         "erosion",
         &NoiseOptions::new()
-            .frequency(0.01)
+            .dimension(3)
+            .frequency(0.008)
             .octaves(7)
             .persistence(0.5)
             .lacunarity(1.9)
@@ -111,7 +113,7 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
 
     terrain.add_layer(&continentalness, 1.0);
     terrain.add_layer(&peaks_and_valleys, 0.5);
-    terrain.add_noise_layer(&erosion, 0.015);
+    terrain.add_noise_layer(&erosion, 0.005);
 
     // ●	Continentalness (weight: 1.7)
     //  ●	1.0: Low terrain, most likely water
@@ -153,11 +155,11 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
     terrain.add_biome(&[-cap, cap, -cap], Biome::new("Biome 19", "Biome Test 19"));
     terrain.add_biome(&[-cap, -cap, cap], Biome::new("Biome 20", "Biome Test 20"));
 
-    {   
+    {
         let mut pipeline = world.pipeline_mut();
 
         let mut terrain_stage = BaseTerrainStage::new(terrain);
-        terrain_stage.set_base(2);
+        terrain_stage.set_base(50);
         terrain_stage.set_threshold(0.0);
 
         pipeline.add_stage(terrain_stage);
@@ -167,15 +169,22 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
             &NoiseOptions::new().frequency(0.04).lacunarity(1.6).build(),
         ));
 
+        // Add the custom FlatCenterStage to create a 10x10 flat area in the center
+        pipeline.add_stage(FlatCenterStage::new(
+            (0, 0),       // Center of the flat area at (0, 0)
+            (40, 40),     // Size of the flat area is 10x10 blocks
+            0.325,         // Flat height value (relative to terrain height)
+        ));
+
         let mut tiny_trees = Trees::new(
             config.seed,
             &NoiseOptions::new()
-                .frequency(0.4)
+                .frequency(0.01)
                 .lacunarity(2.9)
                 .seed(123123)
                 .build(),
         );
-        tiny_trees.set_threshold(3.5);
+        tiny_trees.set_threshold(0.75);
 
         let palm = Tree::new(5004, 5003)
             .leaf_height(2)
@@ -192,7 +201,7 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
         let mut oak_trees = Trees::new(
             config.seed,
             &NoiseOptions::new()
-                .frequency(0.36)
+                .frequency(0.01)
                 .lacunarity(2.9)
                 .seed(532874)
                 .build(),
@@ -200,7 +209,7 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
         oak_trees.set_threshold(4.5);
         let oak = Tree::new(5004, 5003)
             .leaf_height(3)
-            .leaf_radius(5)
+            .leaf_radius(3)
             .branch_initial_radius(3)
             .branch_initial_length(7)
             .branch_radius_factor(0.8)
@@ -250,7 +259,7 @@ pub fn setup_terrain_world(registry: &Registry) -> World {
                 .seed(8675309)
                 .build(),
         );
-        mystical_trees.set_threshold(5.0); // A bit more selective in tree placement
+        mystical_trees.set_threshold(4.5); // A bit more selective in tree placement
 
         // L-System rules:
         // - F: branch out

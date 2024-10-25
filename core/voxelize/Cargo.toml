@@ -1,0 +1,64 @@
+[package]
+description = "A fast multiplayer voxel engine."
+edition = "2021"
+exclude = [
+  "client",
+  "docs",
+  "dist",
+  "examples",
+  "node_modules",
+  "package.json",
+  "tsconfig.*",
+  "yarn.lock",
+  "*.js",
+  "*.ts",
+  "transport",
+  "assets",
+  "data",
+  "tests",
+]
+license = "MIT"
+name = "voxelize"
+version = "0.8.99"
+build = "build.rs"
+
+[lib]
+name = "voxelize"
+path = "server/lib.rs"
+
+[dependencies]
+actix = "0.13.3"
+actix-cors = "0.7.0"
+actix-files = "0.6.5"
+actix-web = "4.5.1"
+actix-web-actors = "4.3.0"
+base64 = "0.22.0"
+byteorder = "1.5.0"
+crossbeam-channel = "0.5.12"
+fastrand = "2.0.2"
+hashbrown = { version = "0.14.3", features = ["serde", "rayon"] }
+indicatif = "0.17.8"
+libflate = "2.0.0"
+kdtree = "0.7.0"
+nalgebra = "0.33.0"
+nanoid = "0.4.0"
+noise = "0.9.0"
+num = "0.4.2"
+prost = "0.12.4"
+rapier3d = { version = "0.21.0", features = ["simd-stable"] }
+rayon = "1.10.0"
+serde = { version = "1.0.198", features = ["derive"] }
+serde_json = "1.0.116"
+specs = { version = "0.20.0", features = ["specs-derive", "serde"] }
+splines = { version = "4.3.1", features = ["serde"] }
+pathfinding = "4.9.1"
+
+chrono = "0.4.19"
+fern = { version = "0.6.2", features = ["colored"] }
+log = "0.4.21"
+
+[build-dependencies]
+prost-build = "0.12.4"
+
+[profile.release]
+opt-level = 3

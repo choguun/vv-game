@@ -2,6 +2,7 @@ mod flags;
 mod role;
 mod rotation;
 mod text;
+mod model;
 
 use specs::WorldExt;
 
@@ -9,6 +10,7 @@ pub use flags::*;
 pub use role::RoleComp;
 pub use rotation::RotationComp;
 pub use text::TextComp;
+pub use model::ModelComp;
 
 use voxelize::World;
 

@@ -1,0 +1,103 @@
+syntax = "proto3";
+package protocol;
+
+message Geometry {
+  uint32 voxel = 1;
+  optional string faceName = 2;
+  repeated int32 at = 3;
+  repeated float positions = 4 [packed = true];
+  repeated float uvs = 5 [packed = true];
+  repeated int32 indices = 6 [packed = true];
+  repeated int32 lights = 7 [packed = true];
+}
+
+message Mesh {
+  int32 level = 1;
+  repeated Geometry geometries = 2;
+}
+
+message Chunk {
+  int32 x = 1;
+  int32 z = 2;
+  string id = 3;
+  repeated Mesh meshes = 4;
+  repeated uint32 voxels = 5 [packed = true];
+  repeated uint32 lights = 6 [packed = true];
+}
+
+message Peer {
+  string id = 1;
+  string username = 2;
+  string metadata = 3;
+}
+
+message Entity {
+  enum Operation {
+    CREATE = 0;
+    DELETE = 1;
+    UPDATE = 2;
+  }
+
+  Operation operation = 1;
+
+  string id = 2;
+  string type = 3;
+  string metadata = 4;
+}
+
+message Event {
+  string name = 1;
+  string payload = 2;
+}
+
+message Method {
+  string name = 1;
+  string payload = 2;
+}
+
+message Update {
+  int32 vx = 1;
+  int32 vy = 2;
+  int32 vz = 3;
+  uint32 voxel = 4;
+  uint32 light = 5;
+}
+
+message ChatMessage {
+  string type = 1;
+  string sender = 2;
+  string body = 3;
+}
+
+message Message {
+  enum Type {
+    INIT = 0;
+    JOIN = 1;
+    LEAVE = 2;
+    ERROR = 3;
+    PEER = 4;
+    ENTITY = 5;
+    LOAD = 6;
+    UNLOAD = 7;
+    UPDATE = 8;
+    METHOD = 9;
+    CHAT = 10;
+    TRANSPORT = 11;
+    EVENT = 12;
+    ACTION = 13;
+    STATS = 14;
+  }
+
+  Type type = 1;
+  string json = 2;
+  string text = 3;
+
+  Method method = 4;
+  ChatMessage chat = 5;
+
+  repeated Peer peers = 6;
+  repeated Entity entities = 7;
+  repeated Chunk chunks = 8;
+  repeated Event events = 9;
+  repeated Update updates = 10;
+}

@@ -113,6 +113,10 @@ async fn main() -> std::io::Result<()> {
         .add_world(worlds::setup_terrain_world(&registry))
         .expect("Failed to add the terrain world");
 
+    server
+        .add_world(worlds::setup_jibcraft_world(&registry))
+        .expect("Failed to add the jibcraft world");
+
     server.prepare();
     server.started = true;
 

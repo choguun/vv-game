@@ -3,6 +3,7 @@ mod role_metadata;
 mod rotation_metadata;
 mod text_metadata;
 mod void_kill;
+mod model_metadata;
 
 use specs::DispatcherBuilder;
 use voxelize::{
